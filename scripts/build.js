@@ -1,5 +1,6 @@
 import { getURL } from "vercel-grammy";
-import bot from "../src/bot.mjs";
+import bot from "../src/bot.cjs";
+ 
 
 const { VERCEL_ENV } = process.env;
 
@@ -13,6 +14,7 @@ if (!allowedEnvs.includes(VERCEL_ENV)) {
   );
   process.exit(1);
 }
+
 
 // Generate URL for webhook
 const url = getURL({ path: "api/update" });

@@ -7,6 +7,12 @@ const { Module } = require("module");
 
 const api_id = parseInt(process.env.apiId);
 const api_hash = process.env.apiHash;
+const botToken = process.env.botToken;
+const apiId = parseInt(process.env.apiId);
+const apiHash = process.env.apiHash;
+
+// Initialize the Telegram bot
+const bot = new Bot(botToken);
 
 // 1. Create instance
 const mtproto = new MTProto({
@@ -18,17 +24,15 @@ const mtproto = new MTProto({
   },
 });
 
-// 2. Print the user country code
-mtproto.call("help.getNearestDc").then((result) => {
-  console.log("country:", result.country);
+bot.on("message", async (ctx) => {
+  try {
+    // 2. Print the user country code
+    mtproto.call("help.getNearestDc").then((result) => {
+      ctx.reply(result.country);
+      console.log("country:", result.country);
+    });
+  } catch (error) {}
 });
-
-const botToken = process.env.botToken;
-const apiId = parseInt(process.env.apiId);
-const apiHash = process.env.apiHash;
-
-// Initialize the Telegram bot
-const bot = new Bot(botToken);
 
 // Initialize the session
 const storeSession = new StoreSession("my_session");

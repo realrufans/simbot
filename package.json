@@ -1,0 +1,34 @@
+{
+  "name": "mynewbot",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "env": "vercel env pull .env",
+    "polling": "npm run env && npm run start",
+    "webhook": "npm run tunnel & vercel dev --listen 3000",
+    "tunnel": "cloudflared tunnel --url http://localhost:3000",
+    "start": "node --watch -r dotenv/config scripts/start.cjs",
+    "test": "node --watch -r dotenv/config test.js"
+  },
+  "dependencies": {
+    "@mtproto/core": "6.3.0",
+    "grammy": "^1.19.2",
+    "mongodb": "^6.3.0",
+    "node-telegram-bot-api": "^0.65.1",
+    "telegram": "^2.19.20",
+    "telegram-rss": "^1.0.1",
+    "telegram-scraper": "^1.0.1",
+    "vercel-grammy": "^0.2.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": "^18.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
